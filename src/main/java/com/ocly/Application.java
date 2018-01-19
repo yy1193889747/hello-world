@@ -1,5 +1,7 @@
 package com.ocly;
 
+import io.prometheus.client.spring.boot.EnablePrometheusEndpoint;
+import io.prometheus.client.spring.boot.EnableSpringBootMetricsCollector;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
@@ -8,30 +10,35 @@ import org.springframework.session.data.redis.config.annotation.web.http.EnableR
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import java.util.UUID;
 
 @Controller
 @SpringBootApplication
 @EnableRedisHttpSession
-public class HelloWorldApplication extends SpringBootServletInitializer {
+@EnablePrometheusEndpoint
+@EnableSpringBootMetricsCollector
+public class Application extends SpringBootServletInitializer{
+
+    private String uuid = UUID.randomUUID().toString();
 
 
     public static void main(String[] args) {
-        SpringApplication.run(HelloWorldApplication.class, args);
+        SpringApplication.run(Application.class, args);
     }
 
     @Override
     protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
-        return application.sources(HelloWorldApplication.class);
+        return application.sources(Application.class);
     }
 
     @GetMapping("/")
     public String hello(HttpServletRequest request, Model model) {
         model.addAttribute("uuid", request.getSession().getId());
+        model.addAttribute("ip", request.getRemoteAddr());
+        model.addAttribute("rip", request.getHeader("X-Real-IP"));
+        model.addAttribute("springid", uuid);
         return "index";
     }
 }
