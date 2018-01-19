@@ -1,5 +1,6 @@
 package com.ocly;
 
+import com.ocly.util.IpUtil;
 import io.prometheus.client.spring.boot.EnablePrometheusEndpoint;
 import io.prometheus.client.spring.boot.EnableSpringBootMetricsCollector;
 import org.springframework.boot.SpringApplication;
@@ -12,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import javax.servlet.http.HttpServletRequest;
+import java.net.InetAddress;
 import java.util.UUID;
 
 @Controller
@@ -36,6 +38,7 @@ public class Application extends SpringBootServletInitializer{
     @GetMapping("/")
     public String hello(HttpServletRequest request, Model model) {
         model.addAttribute("uuid", request.getSession().getId());
+        model.addAttribute("springip", IpUtil.getIp());
         model.addAttribute("ip", request.getRemoteAddr());
         model.addAttribute("rip", request.getHeader("X-Real-IP"));
         model.addAttribute("springid", uuid);

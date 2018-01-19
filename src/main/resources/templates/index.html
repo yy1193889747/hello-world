@@ -2,16 +2,17 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
-    <title>one</title>
+    <title>Lab</title>
 </head>
 <body>
 
-<h2>Docker+redis+tomcat集群</h2>
-<h3>spring session实现session共享</h3>
+<h2>Docker单机创建nginx+tomcat集群+redis session共享</h2>
+<h3>spring session实现tomcat集群session共享</h3>
 
 <p th:text="'项目id：'+${springid}"></p>
+<p th:text="'项目ip：'+${springip}"></p>
 <p th:text="'sessionid：'+${uuid}"></p>
-<p th:text="'ip：'+${ip}"></p>
+<p th:text="'请求ip：'+${ip}"></p>
 <p th:text="'真实ip：'+${rip}"></p>
 
 
