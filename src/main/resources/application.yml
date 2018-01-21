@@ -1,3 +1,13 @@
 spring:
   redis:
     host: 192.168.99.100
+  metrics:
+    export:
+      enabled: false
+security:
+  user:
+    name: user
+    password: pwd
+management:
+  security:
+    enabled: false

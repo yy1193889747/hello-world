@@ -11,6 +11,7 @@ import org.springframework.session.data.redis.config.annotation.web.http.EnableR
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import java.net.InetAddress;
@@ -21,7 +22,7 @@ import java.util.UUID;
 @EnableRedisHttpSession
 @EnablePrometheusEndpoint
 @EnableSpringBootMetricsCollector
-public class Application extends SpringBootServletInitializer{
+public class Application{
 
     private String uuid = UUID.randomUUID().toString();
 
@@ -30,11 +31,11 @@ public class Application extends SpringBootServletInitializer{
         SpringApplication.run(Application.class, args);
     }
 
-    @Override
+   /* @Override
     protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
         return application.sources(Application.class);
     }
-
+*/
     @GetMapping("/")
     public String hello(HttpServletRequest request, Model model) {
         model.addAttribute("uuid", request.getSession().getId());
@@ -44,4 +45,5 @@ public class Application extends SpringBootServletInitializer{
         model.addAttribute("springid", uuid);
         return "index";
     }
+
 }
