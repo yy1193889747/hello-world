@@ -6,6 +6,8 @@ import io.prometheus.client.spring.boot.EnableSpringBootMetricsCollector;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.web.support.SpringBootServletInitializer;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.session.data.redis.config.annotation.web.http.EnableRedisHttpSession;
@@ -23,7 +25,7 @@ import java.util.UUID;
 @EnablePrometheusEndpoint
 @EnableSpringBootMetricsCollector
 @EnableScheduling
-public class Application {
+public class Application  {
 
     private String uuid = UUID.randomUUID().toString();
 
@@ -32,11 +34,13 @@ public class Application {
         SpringApplication.run(Application.class, args);
     }
 
-    /* @Override
+/*
+     @Override
      protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
          return application.sources(Application.class);
      }
- */
+*/
+
     @GetMapping("/")
     public String hello(HttpServletRequest request, Model model) {
         model.addAttribute("uuid", request.getSession().getId());

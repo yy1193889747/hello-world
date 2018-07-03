@@ -1,9 +1,6 @@
 spring:
   redis:
-    host: 192.168.99.100
-  metrics:
-    export:
-      enabled: false
+    host: 111.231.86.225
 security:
   user:
     name: user
@@ -11,3 +8,5 @@ security:
 management:
   security:
     enabled: false
+server:
+  port: 8999

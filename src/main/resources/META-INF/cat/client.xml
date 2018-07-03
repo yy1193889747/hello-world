@@ -1,0 +1,5 @@
+<config mode="client">
+    <servers>
+        <server ip="192.168.66.37" port="2280" />
+    </servers>
+</config>

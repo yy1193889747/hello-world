@@ -49,7 +49,7 @@
         </dependency>
 
         <!--因配置外部TOMCAT 而配置-->
-    <!--    <dependency>
+<!--        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-tomcat</artifactId>
             <scope>provided</scope>
@@ -87,6 +87,12 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <version>1.16.14</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.dianping.cat</groupId>
+            <artifactId>cat-client</artifactId>
+            <version>2.0.0</version>
         </dependency>
     </dependencies>
 
